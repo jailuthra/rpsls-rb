@@ -14,7 +14,6 @@ class Game
 
   def winner?
     winner = nil
-    
     if @user_choice == 'rock'
       return winner = 'user' if @cpu_choice == 'scissors'
       return winner = 'cpu' if @cpu_choice == 'paper'      
