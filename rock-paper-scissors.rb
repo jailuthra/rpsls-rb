@@ -12,7 +12,7 @@ class Game
     @cpu_choice = choices[rand(3)]
   end
 
-  def winner?
+  def determine_winner
     winner = nil
     if @user_choice == 'rock'
       return winner = 'user' if @cpu_choice == 'scissors'
@@ -32,11 +32,11 @@ class Game
     self.take_cpu_input
     puts "\nYou chose #{@user_choice}."
     puts "I chose #{@cpu_choice}."
-    winner = self.winner?
+    winner = self.determine_winner
     
     # Printing the winner
-    puts "\nI won, a puny human couldn't beat me!" if winner == 'cpu'
-    puts "\nCongrats fleshbag, you shall return victorious!" if winner == 'user'
+    puts "\nYou puny human! You shall never beat me!" if winner == 'cpu'
+    puts "\nCongrats fleshbag, you have emerged victorious!" if winner == 'user'
     puts "\nGAME TIED: Triumph said 'NO' to both." if winner == nil
   end
 
