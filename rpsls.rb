@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Copyright 2013 Jai Luthra <me@jailuthra.in>
+# The code is licensed under MIT License. See the LICENSE file for details
+
 class Game
   
   def initialize
