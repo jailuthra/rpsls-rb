@@ -87,7 +87,7 @@ class Game
     "\nPaper disproves Spock" \
     "\nSpock vaporizes rock" \
     "\nRock breaks scissors \n" 
-    self.initialize()
+    initialize()
   end
 
 
