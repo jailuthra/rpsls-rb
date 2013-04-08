@@ -6,4 +6,4 @@ To play:
 ```$ chmod +x rock-paper-scissors.rb```  
 ```$ ./rock-paper-scissors```  
 
-*Shitty operating system users*, run the rpsls.exe file
+**Shitty operating system users**, run the rpsls.exe file
