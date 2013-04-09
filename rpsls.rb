@@ -3,18 +3,10 @@
 # Copyright 2013 Jai Luthra <me@jailuthra.in>
 # The code is licensed under MIT License. See the LICENSE file for details
 
+class InvalidChoiceError < StandardError
+end
+
 class Game
-  
-  def initialize
-    @user_choice = take_user_input() 
-    if @user_choice == 'help'
-      help()
-    else
-      @cpu_choice = take_cpu_input()
-      play()
-    end
-  end
-  
   def take_user_input
     print "\nIt's your turn, play something from <rock, paper, scissors, lizard, spock> or type <help>: "
     return gets.chomp.downcase
@@ -26,57 +18,58 @@ class Game
   end
 
   def determine_winner
-
-    if @user_choice == 'rock'
+    case @user_choice
+    when 'rock'
       if @cpu_choice == 'scissors' || @cpu_choice == 'lizard'
-        return 'user'
+        'user'
       else
-        return 'cpu'
+        'cpu'
       end
-
-    elsif @user_choice == 'paper'
+    when 'paper'
       if @cpu_choice == 'rock' || @cpu_choice == 'spock'
-        return 'user'
+        'user'
       else
-        return 'cpu'
+        'cpu'
       end
-
-    elsif @user_choice == 'scissors'
+    when 'scissors'
       if @cpu_choice == 'paper' || @cpu_choice == 'lizard'
-        return 'user'
+        'user'
       else
-        return 'cpu'
+        'cpu'
       end
-
-    elsif @user_choice == 'lizard'
+    when 'lizard'
       if @cpu_choice == 'paper' || @cpu_choice == 'spock'
-        return 'user'
+        'user'
       else
-        return 'cpu'
+        'cpu'
       end
-
-    elsif @user_choice == 'spock'
+    when 'spock'
       if @cpu_choice == 'rock' || @cpu_choice == 'scissors'
-        return 'user'
+        'user'
       else
-        return 'cpu'
+        'cpu'
       end
-
-    else raise ArgumentError, "Choose something from #{@choices}"
-
-    end
-
-  end
+    else 
+      raise InvalidChoiceError, "Choose something from #{@choices}"
+    end 
+  end 
   
   def play
+    @user_choice = take_user_input()
+    help() if @user_choice == 'help'
+    @cpu_choice = take_cpu_input()
     puts "\nYou chose #{@user_choice}."
     puts "I chose #{@cpu_choice}."
     winner = determine_winner()
-    
     # Printing the winner
-    puts "\nYou puny human! You shall never beat me!" if winner == 'cpu'
-    puts "\nCongrats fleshbag, you have emerged victorious!" if winner == 'user'
-    puts "\nGAME TIED: Triumph said 'NO' to both." if winner == nil
+    case winner
+    when 'cpu'
+      puts "\nYou puny human! You shall never beat me!"
+    when 'user'
+      puts "\nCongrats fleshbag, you have emerged victorious!"
+    else
+      puts "\nGAME TIED: Triumph said 'NO' to both."
+    end
   end
   
   def help
@@ -90,11 +83,10 @@ class Game
     "\nPaper disproves Spock" \
     "\nSpock vaporizes rock" \
     "\nRock breaks scissors \n" 
-    initialize()
+    exit()
   end
-
 
 end
 
 game = Game.new
-
+game.play()
