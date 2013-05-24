@@ -18,41 +18,52 @@ class Game
   end
 
   def determine_winner
-    case @user_choice
-    when 'rock'
-      if @cpu_choice == 'scissors' || @cpu_choice == 'lizard'
-        'user'
-      else
-        'cpu'
-      end
-    when 'paper'
-      if @cpu_choice == 'rock' || @cpu_choice == 'spock'
-        'user'
-      else
-        'cpu'
-      end
-    when 'scissors'
-      if @cpu_choice == 'paper' || @cpu_choice == 'lizard'
-        'user'
-      else
-        'cpu'
-      end
-    when 'lizard'
-      if @cpu_choice == 'paper' || @cpu_choice == 'spock'
-        'user'
-      else
-        'cpu'
-      end
-    when 'spock'
-      if @cpu_choice == 'rock' || @cpu_choice == 'scissors'
-        'user'
-      else
-        'cpu'
-      end
-    else 
-      raise InvalidChoiceError, "Choose something from #{@choices}"
-    end 
-  end 
+    if @user_choice != @cpu_choice
+
+        case @user_choice 
+
+        when 'rock'
+          if @cpu_choice == 'scissors' || @cpu_choice == 'lizard'
+            'user'
+          else
+            'cpu'
+          end
+
+        when 'paper'
+          if @cpu_choice == 'rock' || @cpu_choice == 'spock'
+            'user'
+          else
+            'cpu'
+          end
+
+        when 'scissors'
+          if @cpu_choice == 'paper' || @cpu_choice == 'lizard'
+            'user'
+          else
+            'cpu'
+          end
+
+        when 'lizard'
+          if @cpu_choice == 'paper' || @cpu_choice == 'spock'
+            'user'
+          else
+            'cpu'
+          end
+
+        when 'spock'
+          if @cpu_choice == 'rock' || @cpu_choice == 'scissors'
+            'user'
+          else
+            'cpu'
+          end
+
+        else 
+          raise InvalidChoiceError, "Choose something from #{@choices}"
+        end   # End case
+
+      end # End If
+
+  end # End Function
   
   def play
     @user_choice = take_user_input()
